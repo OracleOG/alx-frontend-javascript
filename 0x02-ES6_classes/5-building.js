@@ -21,6 +21,6 @@ export default class Building {
   }
 
   evacuationWarningMessage() {
-    return `Person must evacuate the building ${this._sqft} sqft`;
+    return `Evacuate slowly the building of ${this._sqft} sqft`;
   }
 }
