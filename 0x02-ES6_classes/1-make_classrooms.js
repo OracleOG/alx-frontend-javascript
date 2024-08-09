@@ -7,4 +7,3 @@ export default function initializeRooms() {
 
   return [classroom1, classroom2, classroom3];
 }
-
