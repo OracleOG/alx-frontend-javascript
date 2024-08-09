@@ -1,9 +1,20 @@
-import ClassRoom from './0-classroom';
+import HolbertonCourse from "./2-hbtn_course.js";
 
-export default function initializeRooms() {
-  const classroom1 = new ClassRoom(19);
-  const classroom2 = new ClassRoom(20);
-  const classroom3 = new ClassRoom(34);
+const c1 = new HolbertonCourse("ES6", 1, ["Bob", "Jane"])
+console.log(c1.name);
+c1.name = "Python 101";
+console.log(c1);
 
-  return [classroom1, classroom2, classroom3];
+try {
+    c1.name = 12;
+} 
+catch(err) {
+    console.log(err);
+}
+
+try {
+    const c2 = new HolbertonCourse("ES6", "1", ["Bob", "Jane"]);
+}
+catch(err) {
+    console.log(err);
 }
