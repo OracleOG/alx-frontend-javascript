@@ -1,23 +1,12 @@
-import loadBalancer from "./7-load_balancer";
+import handleProfileSignup from './6-final-user';
 
-const ukSuccess = 'Downloading from UK is faster';
-const frSuccess = 'Downloading from FR is faster';
-
-const promiseUK = new Promise(function(resolve, reject) {
-    setTimeout(resolve, 100, ukSuccess);
+let test("handleProfileSignup returns the right array", async () => {
+    const queue = await handleProfileSignup('John', 'Doe', 'Gerald.jpg');
+    expect(queue).toEqual([
+      {
+        status: 'fulfilled',
+        value: { firstName: 'John', lastName: 'Doe' }
+      },
+      { status: 'rejected', value: 'Error: Gerald.jpg cannot be processed' }
+    ]);
 });
-
-const promiseUKSlow = new Promise(function(resolve, reject) {
-    setTimeout(resolve, 400, ukSuccess);
-});
-
-const promiseFR = new Promise(function(resolve, reject) {
-    setTimeout(resolve, 200, frSuccess);
-});
-
-const test = async () => {
-    console.log(await loadBalancer(promiseUK, promiseFR));
-    console.log(await loadBalancer(promiseUKSlow, promiseFR));
-}
-
-test();
