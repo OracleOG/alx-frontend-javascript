@@ -1,4 +1,3 @@
-import getResponseFromAPI from './0-promise';
+import signUpUser from './4-user-promise';
 
-const response = getResponseFromAPI();
-console.log(response instanceof Promise);
+console.log(signUpUser('Bob', 'Dylan'));
