@@ -1,14 +1,16 @@
 import { uploadPhoto, createUser } from './utils';
 
-export default async function handleProfileSignup(firstName, lastName, fileName) {
-  const [photo, user] = await Promise.allSettled([uploadPhoto(fileName),
-    createUser(firstName, lastName)]);
-  return [{
-    status: user.status,
-    value: user.status === 'fulfilled' ? user.value : user.reason,
-  },
-  {
-    status: photo.status,
-    value: photo.status === 'fulfilled' ? photo.value : photo.reason,
-  }];
+export default async function asyncUploadUser() {
+  try {
+    const values = await Promise.all([uploadPhoto(), createUser()]);
+    return {
+      photo: values[0],
+      user: values[1],
+    };
+  } catch (error) {
+    return {
+      photo: null,
+      user: null,
+    };
+  }
 }
